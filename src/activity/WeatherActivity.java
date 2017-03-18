@@ -22,8 +22,8 @@ import com.coolweather.app.R;
 public class WeatherActivity extends Activity implements OnClickListener {
 	/**
 	 * cityNameText 用于显示城市名 , publishText 用于显示发布时间 , weatherDespText 用于显示天气描述信息
-	 * , temp1Text temp2Text 用于显示气温1 气温2, currentDateText 用于显示当前日期, switchCity
-	 * 切换城市按钮 , refreshWeather 更新天气按钮
+	 * temp1Text temp2Text 用于显示气温1 气温2, currentDateText 用于显示当前日期 
+	 * switchCity 切换城市按钮 , refreshWeather 更新天气按钮
 	 */
 	private LinearLayout weatherInfoLayout;
 	private TextView cityNameText;
@@ -107,13 +107,12 @@ public class WeatherActivity extends Activity implements OnClickListener {
 				+ weatherCode + ".html";
 		LogUtil.d("WeatherActivity", "已经得到天气代号");
 		queryFromServer(address, "weatherCode");
-		
 
 	}
 
-	/** 
-	 * 根据传入的地址和类型去向服务器查询天气代号或者天气信息。 
-	 */ 
+	/**
+	 * 根据传入的地址和类型去向服务器查询天气代号或者天气信息。
+	 */
 	private void queryFromServer(final String address, final String type) {
 		HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
 
@@ -126,7 +125,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 						if (a != null && a.length == 2) {
 							String weatherCode = a[1];
 							queryWeatherInfo(weatherCode);
-							//LogUtil.d("WeatherActivity", weatherCode+"**");
+							// LogUtil.d("WeatherActivity", weatherCode+"**");
 						}
 						LogUtil.d("WeatherActivity", "获取到服务器返回的数据");
 					}
