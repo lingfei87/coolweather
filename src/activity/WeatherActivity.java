@@ -1,5 +1,6 @@
 package activity;
 
+import service.AutoUpdateService;
 import util.HttpCallbackListener;
 import util.HttpUtil;
 import util.LogUtil;
@@ -22,8 +23,8 @@ import com.coolweather.app.R;
 public class WeatherActivity extends Activity implements OnClickListener {
 	/**
 	 * cityNameText 用于显示城市名 , publishText 用于显示发布时间 , weatherDespText 用于显示天气描述信息
-	 * temp1Text temp2Text 用于显示气温1 气温2, currentDateText 用于显示当前日期 
-	 * switchCity 切换城市按钮 , refreshWeather 更新天气按钮
+	 * temp1Text temp2Text 用于显示气温1 气温2, currentDateText 用于显示当前日期 switchCity
+	 * 切换城市按钮 , refreshWeather 更新天气按钮
 	 */
 	private LinearLayout weatherInfoLayout;
 	private TextView cityNameText;
@@ -167,6 +168,9 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		currentDateText.setText(pref.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
+
+		Intent intent = new Intent(this, AutoUpdateService.class);
+		startService(intent);
 
 	}
 
